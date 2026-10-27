@@ -35,4 +35,4 @@ Grundlage: bereitgestelltes Praxiskonzept vom 27. Oktober 2026 und die im Gespr�
 
 Quelle: vom Nutzer bereitgestellter Screenshot des Rolfing-Fachprofils «Praxis Balance-Sarah Herren». Kein Profil-Link vorhanden. Übernommen: Certified Advanced Rolfer®; Deutsch inklusive Schweizerdeutsch, Französisch, Englisch; Visceral Fascial Work, Chronic Pain Treatment und Scar Treatment / Scar Integration. Die Schwerpunkte sind im Prototyp auf Deutsch wiedergegeben. Die generische Verzeichniskategorie «Other» wird nicht als Qualifikation übernommen. Persönlicher Werdegang, Ausbildungsjahre und weitere Anerkennungen sind dadurch nicht belegt.
 
-Das mitgesendete Porträt ist im Chat sichtbar; für die Einbindung wird die Originaldatei benötigt. Sie lag beim Einpflegen der Profilangaben noch nicht als herunterladbarer Upload vor.
+Das Porträt wurde anschliessend als `Sarah.zip` bereitgestellt. Die enthaltene Originaldatei `Sarah.jpg` ist unverändert als `assets/sarah-herren.jpg` eingebunden. Sie erscheint im Bereich «Über Sarah».

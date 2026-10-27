@@ -205,3 +205,6 @@ dialog a { text-decoration: underline; }
 .profile-specialties h3 { font-size: 23px; margin-bottom: 12px; }
 .profile-specialties ul { margin: 0; padding-left: 19px; color: var(--muted); font-size: 14px; }
 .profile-specialties li { padding: 3px 0 3px 4px; }
+
+.sarah-portrait { display: block; width: min(100%, 340px); height: auto; aspect-ratio: 1; border-radius: 3px; margin-bottom: 30px; }
+@media (max-width: 760px) { .sarah-portrait { width: min(100%, 300px); margin-bottom: 26px; } }
