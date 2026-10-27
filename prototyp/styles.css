@@ -233,3 +233,22 @@ html { scroll-padding-top: 130px; }
   .price-details { grid-template-columns: 1fr; gap: 15px; }
   .missing-list > div { grid-template-columns: 1fr; gap: 6px; }
 }
+
+/* Show only the two figures from the original association SVG as decoration. */
+#rolfing .method-heading { isolation: isolate; }
+#rolfing .method-heading::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  right: 0;
+  top: -20px;
+  width: 230px;
+  height: 380px;
+  background: url('../assets/rolfing.svg') left center / auto 100% no-repeat;
+  opacity: .07;
+}
+@media (max-width: 760px) {
+  #rolfing .method-heading { position: relative; }
+  #rolfing .method-heading::before { width: 165px; height: 275px; top: 0; }
+}
