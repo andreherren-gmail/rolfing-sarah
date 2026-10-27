@@ -334,3 +334,5 @@ dialog.menu-drawer::backdrop { background: #062f4380; backdrop-filter: blur(3px)
 .drawer-caption { color: var(--muted); font-size: 11px; line-height: 1.9; margin: 45px 0 0; }
 @media (max-width: 760px) { .menu-toggle { width: 48px; height: 48px; } dialog.menu-drawer { padding: 28px 25px; width: min(420px, 100%); } #navigation a { font-size: 27px; padding-block: 17px; } }
 @media (prefers-reduced-motion: reduce) { dialog.menu-drawer { transition: none; } }
+
+.practice-contact-link { margin: 30px 0 0; font-size: 14px; }
