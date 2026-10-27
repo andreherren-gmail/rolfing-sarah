@@ -43,3 +43,7 @@ Vorschläge für die weiteren Bereiche: ein feines, abstraktes Fasernetz für Fa
 Das vom Nutzer als `faszien.zip` gelieferte Bild `faszien.png` ist unverändert unter `assets/faszien.png` eingebunden. Es hinterlegt den Bereich Faszientherapie mit einem hellen Verlauf, der das Motiv zur Lesespalte hin ausblendet. Auf Mobilgeräten bleibt das Motiv auf den oberen Abschnitt begrenzt und blendet vor dem ausführlichen Text aus.
 
 Das vom Nutzer als `narbe.zip` gelieferte Narbenmotiv ist unverändert als `assets/narbe.png` gespeichert. Es hinterlegt den ScarWork-Bereich dezent und blendet zur Textspalte in die blaue Abschnittsfläche aus. Auf Smartphones begrenzt sich das Motiv auf den oberen Abschnitt; die ausführlichen Texte bleiben auf einer ruhigen Fläche.
+
+## Eigene Praxisseite
+
+`/prototyp/praxen/` stellt Bern und Niederscherli auf einer eigenen Seite vor. Das Hauptmenü erhält dafür den Eintrag «Praxen». Zwei grosszügige, ausdrücklich als Bildplatzhalter gekennzeichnete Motive aus der bestehenden Bildwelt (Balance-Steine und blaues Faszienmotiv) zeigen die spätere Bildfläche. Sie geben keine tatsächlichen Praxisräume vor und werden durch echte Raumfotos ersetzt. Je Standort erscheinen Adresse, Anfahrtslink und noch zu ergänzende Angaben für Behandlungstage, ÖV, Parkplätze und Zugänglichkeit.

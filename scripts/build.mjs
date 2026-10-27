@@ -26,15 +26,17 @@ for (const directory of ['', 'prototyp/']) {
   }
   await writeFile(`dist/${directory}index.html`, html);
 }
-// The prices page shares the prototype's versioned stylesheet and script.
-await mkdir('dist/prototyp/preise', { recursive: true });
-let prices = await readFile('prototyp/preise/index.html', 'utf8');
-for (const file of ['styles.css', 'app.js']) {
-  const content = await readFile(`prototyp/${file}`);
-  const hash = createHash('sha256').update(content).digest('hex').slice(0, 12);
-  const dot = file.lastIndexOf('.');
-  const versioned = `${file.slice(0, dot)}.${hash}${file.slice(dot)}`;
-  prices = prices.replaceAll(`"../${file}"`, `"../${versioned}"`);
+// Prototype subpages share its versioned stylesheet and script.
+for (const page of ['preise', 'praxen']) {
+  await mkdir(`dist/prototyp/${page}`, { recursive: true });
+  let html = await readFile(`prototyp/${page}/index.html`, 'utf8');
+  for (const file of ['styles.css', 'app.js']) {
+    const content = await readFile(`prototyp/${file}`);
+    const hash = createHash('sha256').update(content).digest('hex').slice(0, 12);
+    const dot = file.lastIndexOf('.');
+    const versioned = `${file.slice(0, dot)}.${hash}${file.slice(dot)}`;
+    html = html.replaceAll(`"../${file}"`, `"../${versioned}"`);
+  }
+  await writeFile(`dist/prototyp/${page}/index.html`, html);
 }
-await writeFile('dist/prototyp/preise/index.html', prices);
-console.log('Built landing page, prototype and prices page with versioned assets → dist/');
+console.log('Built landing page, prototype and subpages with versioned assets → dist/');

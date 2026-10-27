@@ -285,3 +285,34 @@ html { scroll-padding-top: 130px; }
     background-size: cover, auto 440px;
   }
 }
+
+.practice-section { padding-block: 65px; }
+.practice-image { position: relative; margin: 0 0 42px; aspect-ratio: 2.8; overflow: hidden; background: #deeff7; }
+.practice-image img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .72; }
+.practice-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #eaf5faf2, #eaf5faad 48%, #eaf5fa00); }
+.practice-image figcaption { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 40px; }
+.practice-image figcaption strong { font-family: Georgia, serif; font-size: clamp(25px, 3vw, 40px); font-weight: 400; line-height: 1.25; }
+.practice-image figcaption > span:last-child { margin-top: 23px; font-size: 10px; letter-spacing: .5px; color: var(--muted); }
+.practice-image-fascia img { opacity: .65; }
+.practice-description { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; }
+.practice-description address { min-height: auto; font-size: 15px; margin: 0 0 25px; }
+.practice-description h3 { font-size: 25px; margin-bottom: 17px; }
+.practice-description p { color: var(--muted); font-size: 14px; }
+.practice-facts { margin: 25px 0 0; }
+.practice-facts > div { display: grid; grid-template-columns: 1fr 1.5fr; gap: 25px; padding: 15px 0; border-top: 1px solid var(--line); font-size: 12px; }
+.practice-facts dt { font-weight: 600; }
+.practice-facts dd { color: var(--muted); margin: 0; }
+.practice-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+.practice-contact p { font-size: 13px; color: var(--muted); }
+@media (min-width: 761px) and (max-width: 1050px) { .header .brand img { width: 200px; } .header nav { gap: 3px; } .header nav a { padding-inline: 8px; } }
+@media (max-width: 760px) {
+  .practice-section { padding-block: 40px; }
+  .practice-image { aspect-ratio: 1.25; margin-bottom: 30px; }
+  .practice-image figcaption { padding: 25px; }
+  .practice-image figcaption strong { font-size: 29px; }
+  .practice-image::after { background: linear-gradient(90deg, #eaf5faf2, #eaf5fa70); }
+  .practice-description, .practice-contact { grid-template-columns: 1fr; gap: 30px; }
+  .practice-description h2 { font-size: 34px; }
+  .practice-facts > div { grid-template-columns: 1fr; gap: 6px; }
+  .practice-contact .phone-link { display: block; margin-left: 0; }
+}
