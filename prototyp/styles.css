@@ -316,3 +316,11 @@ html { scroll-padding-top: 130px; }
   .practice-facts > div { grid-template-columns: 1fr; gap: 6px; }
   .practice-contact .phone-link { display: block; margin-left: 0; }
 }
+
+/* Room-image placeholders keep their photo visible; captions identify their status. */
+.practice-image.practice-photo { aspect-ratio: auto; }
+.practice-photo img { height: auto; aspect-ratio: 16 / 9; object-fit: cover; opacity: 1; }
+.practice-photo::after { display: none; }
+.practice-photo figcaption { position: static; display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 15px; padding: 12px 17px; background: #e4f1f8; font-size: 11px; }
+.practice-photo figcaption > span:last-child { margin-top: 0; font-size: 10px; letter-spacing: 0; }
+@media (max-width: 760px) { .practice-photo img { aspect-ratio: 4 / 3; } .practice-photo figcaption { align-items: flex-start; padding: 11px 13px; font-size: 10px; } .practice-photo figcaption > span:last-child { font-size: 9px; text-align: right; } }

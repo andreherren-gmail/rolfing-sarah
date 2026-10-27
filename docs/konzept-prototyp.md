@@ -47,3 +47,7 @@ Das vom Nutzer als `narbe.zip` gelieferte Narbenmotiv ist unverändert als `asse
 ## Eigene Praxisseite
 
 `/prototyp/praxen/` stellt Bern und Niederscherli auf einer eigenen Seite vor. Das Hauptmenü erhält dafür den Eintrag «Praxen». Zwei grosszügige, ausdrücklich als Bildplatzhalter gekennzeichnete Motive aus der bestehenden Bildwelt (Balance-Steine und blaues Faszienmotiv) zeigen die spätere Bildfläche. Sie geben keine tatsächlichen Praxisräume vor und werden durch echte Raumfotos ersetzt. Je Standort erscheinen Adresse, Anfahrtslink und noch zu ergänzende Angaben für Behandlungstage, ÖV, Parkplätze und Zugänglichkeit.
+
+## Aktualisierung der Praxisangaben
+
+Die vom Nutzer in `praxen.zip` gelieferten Raummotive (`bern.png`, `niederscherlu.png`) ersetzen die abstrakten Bildplatzhalter. Beide bleiben ausdrücklich als Bildplatzhalter gekennzeichnet. Bern: BERNMOBIL Buslinie 12, Haltestelle Rathaus; keine eigenen Parkplätze, Parkhäuser Rathaus oder Metro in der Nähe. Als Feldbezeichnung wird «Etage» verwendet; die konkrete Etage ist noch offen. Angaben zum Lift und Zugang bleiben unbestätigt.
