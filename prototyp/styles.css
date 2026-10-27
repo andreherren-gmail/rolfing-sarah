@@ -254,3 +254,18 @@ html { scroll-padding-top: 130px; }
 }
 
 #rolfing .method-heading > * { position: relative; z-index: 1; }
+
+/* Original fascia artwork fades gently towards the reading column. */
+#faszientherapie {
+  background-image: linear-gradient(90deg, #fbfdfece 0%, #fbfdfee0 28%, #fbfdfefa 52%, #fbfdfe 70%), url('../assets/faszien.png');
+  background-position: center, left center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (max-width: 760px) {
+  #faszientherapie {
+    background-image: linear-gradient(180deg, #fbfdfed4, #fbfdfee8 220px, #fbfdfe 440px), url('../assets/faszien.png');
+    background-position: center, center top;
+    background-size: cover, auto 420px;
+  }
+}

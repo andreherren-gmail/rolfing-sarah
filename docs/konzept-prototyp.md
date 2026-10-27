@@ -39,3 +39,5 @@ Das Porträt wurde anschliessend als `Sarah.zip` bereitgestellt. Die enthaltene 
 Das vom Nutzer gelieferte `rolfing.svg` ist unverändert unter `assets/rolfing.svg` gespeichert. Im Rolfing-Bereich zeigt ein dekorativer, schwach sichtbarer CSS-Hintergrund nur den linken Figurenausschnitt; der Verbandsschriftzug wird dort nicht dargestellt. Das Motiv ist kein Vorher-Nachher-Versprechen.
 
 Vorschläge für die weiteren Bereiche: ein feines, abstraktes Fasernetz für Faszientherapie und eine sanfte verbindende Linie für ScarWork. Beide in zurückhaltenden Blautönen und ohne medizinische Ergebnisversprechen. Für die beiden Standorte werden echte Raum- und Eingangsfotos benötigt; keine fiktiven Praxisbilder verwenden.
+
+Das vom Nutzer als `faszien.zip` gelieferte Bild `faszien.png` ist unverändert unter `assets/faszien.png` eingebunden. Es hinterlegt den Bereich Faszientherapie mit einem hellen Verlauf, der das Motiv zur Lesespalte hin ausblendet. Auf Mobilgeräten bleibt das Motiv auf den oberen Abschnitt begrenzt und blendet vor dem ausführlichen Text aus.
