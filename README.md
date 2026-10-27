@@ -51,3 +51,7 @@ Kontaktdaten und Qualifikation stammen aus dem bereitgestellten Praxiskonzept. I
 ## Cache bei Veröffentlichungen
 
 Der Build versieht CSS und JavaScript jeder Seite mit einem Inhalts-Hash im Dateinamen. Firebase liefert Dateien mit Revalidierung aus, damit eine neue Landingpage nicht mit zwischengespeicherten Prototyp-Styles kombiniert wird. Die Originaldateinamen bleiben für bereits geöffnete Seiten verfügbar.
+
+## Informativer Prototyp
+
+Der ausführliche Entwurf unter `/prototyp/` folgt der blau-weissen Farbwelt der Landingpage. Er erklärt Rolfing®, Faszientherapie und ScarWork – Narbenarbeit, die Zusammenhänge der Ansätze, den Behandlungsablauf und häufige Fragen. Kontakt bleibt per Telefon oder E-Mail; es gibt kein Reservationssystem. Das überarbeitete Konzept und die noch zu bestätigenden Inhalte stehen in `docs/konzept-prototyp.md`.
