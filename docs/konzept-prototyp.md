@@ -41,3 +41,5 @@ Das vom Nutzer gelieferte `rolfing.svg` ist unverändert unter `assets/rolfing.s
 Vorschläge für die weiteren Bereiche: ein feines, abstraktes Fasernetz für Faszientherapie und eine sanfte verbindende Linie für ScarWork. Beide in zurückhaltenden Blautönen und ohne medizinische Ergebnisversprechen. Für die beiden Standorte werden echte Raum- und Eingangsfotos benötigt; keine fiktiven Praxisbilder verwenden.
 
 Das vom Nutzer als `faszien.zip` gelieferte Bild `faszien.png` ist unverändert unter `assets/faszien.png` eingebunden. Es hinterlegt den Bereich Faszientherapie mit einem hellen Verlauf, der das Motiv zur Lesespalte hin ausblendet. Auf Mobilgeräten bleibt das Motiv auf den oberen Abschnitt begrenzt und blendet vor dem ausführlichen Text aus.
+
+Das vom Nutzer als `narbe.zip` gelieferte Narbenmotiv ist unverändert als `assets/narbe.png` gespeichert. Es hinterlegt den ScarWork-Bereich dezent und blendet zur Textspalte in die blaue Abschnittsfläche aus. Auf Smartphones begrenzt sich das Motiv auf den oberen Abschnitt; die ausführlichen Texte bleiben auf einer ruhigen Fläche.

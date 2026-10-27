@@ -269,3 +269,19 @@ html { scroll-padding-top: 130px; }
     background-size: cover, auto 420px;
   }
 }
+
+/* Original scar artwork, softened into the blue section and away from the text. */
+#scarwork {
+  background-image: linear-gradient(90deg, #edf7fbab 0%, #e8f4fad4 33%, #e1f0f8fa 55%, #e1f0f8 70%), url('../assets/narbe.png');
+  background-position: center, left center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (max-width: 760px) {
+  #scarwork {
+    background-color: #eaf5fa;
+    background-image: linear-gradient(180deg, #eaf5fab3, #eaf5fad9 220px, #eaf5fa 460px), url('../assets/narbe.png');
+    background-position: center, center top;
+    background-size: cover, auto 440px;
+  }
+}
