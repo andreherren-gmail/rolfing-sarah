@@ -18,7 +18,7 @@ await cp('assets', 'dist/assets', { recursive: true, filter: source => !original
 for (const directory of ['', 'prototyp/']) {
   await mkdir(`dist/${directory}`, { recursive: true });
   let html = await readFile(`${directory}index.html`, 'utf8');
-  for (const file of ['styles.css', 'app.js']) {
+  for (const file of (directory === 'prototyp/' ? ['styles.css', 'app.js', 'termin.js'] : ['styles.css', 'app.js'])) {
     const content = await readFile(`${directory}${file}`);
     const hash = createHash('sha256').update(content).digest('hex').slice(0, 12);
     const dot = file.lastIndexOf('.');
@@ -31,10 +31,10 @@ for (const directory of ['', 'prototyp/']) {
   await writeFile(`dist/${directory}index.html`, addSeo(html, `/${directory}`));
 }
 // Prototype subpages share its versioned stylesheet and script.
-for (const page of ['preise', 'praxen']) {
+for (const page of ['preise', 'praxen', 'termin']) {
   await mkdir(`dist/prototyp/${page}`, { recursive: true });
   let html = await readFile(`prototyp/${page}/index.html`, 'utf8');
-  for (const file of ['styles.css', 'app.js']) {
+  for (const file of ['styles.css', 'app.js', 'termin.js']) {
     const content = await readFile(`prototyp/${file}`);
     const hash = createHash('sha256').update(content).digest('hex').slice(0, 12);
     const dot = file.lastIndexOf('.');

@@ -61,3 +61,11 @@ Das Porträt wurde durch die anschliessend vom Nutzer bereitgestellte PNG-Datei 
 ## Sprachliche Leitlinien
 
 Schweizer Hochdeutsch mit ss statt ß. Persönliche Ansprache mit «du». Die Texte sollen ruhig, sachlich und einfühlsam sein. Keine Gedankenstriche, Ausrufezeichen, werblichen Versprechen oder zugespitzten Slogans. Überschriften benennen die Inhalte. Fragen sind dort sinnvoll, wo sie konkrete Informationen erschliessen, etwa in den FAQ. Fachbegriffe werden verständlich erklärt. Unsichere Angaben bleiben als offen gekennzeichnet.
+
+## Assistent für Terminanfragen
+
+Neu ergänzt auf Wunsch des Nutzers: `/prototyp/termin/` führt durch die Schritte Ort, Datum und Zeit, Behandlungsart sowie Zusammenfassung. Jeweils ein Akkordeon ist geöffnet; vorherige Schritte lassen sich erneut bearbeiten. Ort und Zeitpunkt dürfen flexibel bleiben. Neben den drei Methoden gibt es die Möglichkeit, die passende Behandlung zunächst zu besprechen. Erster Besuch oder Folgetermin werden unterschieden.
+
+Es gibt keine Kalenderanbindung und keine Anzeige freier Termine. Der Assistent bereitet eine E-Mail an Sarah vor, die der Nutzer selbst verschickt und bei Bedarf um Namen und Rückrufnummer ergänzt. Die Anfrage ist erst nach persönlicher Rückmeldung und Bestätigung vereinbart. Die Auswahl bleibt im Arbeitsspeicher der Seite; sie wird nicht per Netzwerk versendet und nicht in Browser-Speichern hinterlegt. Ein kopierbarer Text dient als Alternative, falls kein E-Mail-Programm eingerichtet ist. Medizinische Unterlagen werden nicht abgefragt.
+
+Alle Prototypseiten erhalten einen sichtbaren Button «Termin anfragen» neben dem Hamburger-Menü. Die Landingpage bleibt unverändert. Die neue Seite bleibt wie die übrigen Entwurfsseiten nicht indexierbar.

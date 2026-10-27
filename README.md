@@ -67,3 +67,7 @@ Das Kopfband des Prototyps bleibt beim Scrollen sichtbar. Ein Hamburger-Symbol �
 Die SEO-Ergänzungen entstehen im Build: für ihre Prüfung `npm run build` und `npm run preview` verwenden. Der einfache Entwicklungsserver liefert die Quelldateien ohne die zusätzlich erzeugten SEO-Tags. Die Bilddateien Faszien, Narbe und Praxisplatzhalter werden als WebP ausgeliefert. Ihre PNG-Originale bleiben im Repository, werden aber nicht ins Deployment kopiert.
 
 Noch ausserhalb des Codes offen: Hauptdomain verbinden, Google Search Console verifizieren und Sitemap einreichen, Google-Unternehmensprofile je berechtigtem Standort prüfen und Fachverzeichnisse auf einheitliche Praxisdaten abgleichen. Fachliche Autorenschaft, Preise und Anerkennungen erst nach Sarahs Bestätigung vervollständigen; diese Optimierungen garantieren keine Rankings oder KI-Zitate.
+
+## Terminassistent
+
+`/prototyp/termin/` ist ein clientseitiger Assistent für eine **Terminanfrage**, keine Echtzeitbuchung. Ein sichtbarer Button auf den Prototypseiten öffnet die Auswahl von Ort, Datum/Zeit und Behandlung. Er erstellt eine Zusammenfassung und einen `mailto:`-Link. Es wird nichts automatisch gesendet, reserviert oder dauerhaft gespeichert. Ohne E-Mail-Programm steht ein kopierbarer Anfragetext bereit. Freie Termine, verbindliche Dauer und Tarife sind nicht hinterlegt. Der Nutzer ergänzt seinen Namen im E-Mail-Programm; Sarah bestätigt den Termin persönlich. `prototyp/termin.js` wird beim Build wie die übrigen Skripte mit einem Inhalts-Hash ausgeliefert.
