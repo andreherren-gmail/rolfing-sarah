@@ -239,7 +239,7 @@ html { scroll-padding-top: 130px; }
 #rolfing .method-heading::before {
   content: '';
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   right: 0;
   top: -20px;
@@ -252,3 +252,5 @@ html { scroll-padding-top: 130px; }
   #rolfing .method-heading { position: relative; }
   #rolfing .method-heading::before { width: 165px; height: 275px; top: 0; }
 }
+
+#rolfing .method-heading > * { position: relative; z-index: 1; }
