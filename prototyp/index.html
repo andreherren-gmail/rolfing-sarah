@@ -12,9 +12,13 @@
 <div class="prototype">Website-Entwurf <span>·</span> Inhalte zur gemeinsamen Abstimmung</div>
 <div class="header-shell"><header class="header wrap">
   <a class="brand" href="#" aria-label="Balance – Startseite"><img src="../assets/balance.avif" alt="Balance – Rolfing® Strukturelle Integration" width="406" height="126"></a>
-  <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menü <span aria-hidden="true">☰</span></button>
-  <nav id="navigation" aria-label="Hauptnavigation"><a href="#sarah">Über Sarah</a><a href="#rolfing">Behandlungen</a><a href="praxen/">Praxen</a><a href="preise/">Preise & Versicherung</a><a href="#kontakt">Kontakt</a></nav>
+<button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu-drawer"><span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span></button>
 </header></div>
+<dialog id="menu-drawer" class="menu-drawer" aria-labelledby="menu-title">
+  <div class="drawer-top"><p id="menu-title">Balance <span>Sarah Herren</span></p><button class="menu-close" type="button" aria-label="Menü schliessen" autofocus><span aria-hidden="true"></span></button></div>
+  <nav id="navigation" aria-label="Hauptnavigation"><a href="#sarah">Über Sarah</a><a href="#rolfing">Behandlungen</a><a href="praxen/">Praxen</a><a href="preise/">Preise & Versicherung</a><a href="#kontakt">Kontakt</a></nav>
+  <p class="drawer-caption">Rolfing® · Faszientherapie<br>ScarWork – Narbenarbeit</p>
+</dialog>
 <main id="main">
 <div class="hero-background">
 <section class="hero wrap" aria-labelledby="hero-title">

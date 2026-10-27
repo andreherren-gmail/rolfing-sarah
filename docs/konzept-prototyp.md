@@ -14,7 +14,7 @@ Persönliche Ansprache mit «du». Leitgedanke: «Stellt dich auf!» Fachbegriff
 
 ## Inhaltlicher Aufbau
 
-Das gut sichtbare, beim Scrollen stehenbleibende Hauptmenü enthält vier Einträge: Über Sarah, Behandlungen, Preise & Versicherung, Kontakt. Auf Mobilgeräten öffnet eine deutlich kontrastierende Menüschaltfläche dieselben Einträge. Keine zusätzlichen Kacheln und keine technischen Abschnittsnummern.
+Das beim Scrollen stehenbleibende Kopfband zeigt auf allen Bildschirmgrössen ein Hamburger-Symbol. Es öffnet ein von rechts einschiebendes Menü mit fünf Einträgen: Über Sarah, Behandlungen, Praxen, Preise & Versicherung, Kontakt. Das Panel lässt sich per Schliessen-Knopf, Escape und Klick auf den abgedunkelten Hintergrund schliessen. Der Tastaturfokus bleibt währenddessen im Menü und kehrt beim Schliessen zur Menüschaltfläche zurück; reduzierte Bewegung wird berücksichtigt. Keine zusätzlichen Kacheln und keine technischen Abschnittsnummern.
 
 Auf `/prototyp/` folgen direkt auf den Einstieg Sarahs Porträt und Vorstellung. Anschliessend stehen die ausführlichen Inhalte zu Rolfing®, Faszientherapie und ScarWork – Narbenarbeit ohne vorgeschaltete Auswahlkacheln. Ablauf, häufige Fragen und die beiden Praxen mit Kontakt schliessen die Seite ab. Die Hauptseite `/` bleibt unverändert.
 
