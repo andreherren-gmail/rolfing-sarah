@@ -196,3 +196,12 @@ dialog a { text-decoration: underline; }
   .phone-link { display: block; margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+/* Verified profile details from Sarah's professional directory entry. */
+.profile-languages { margin-top: 30px; }
+.profile-languages h3 { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0; margin-bottom: 8px; }
+.profile-languages p { color: var(--muted); font-size: 13px; }
+.profile-specialties { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 21px 0; margin: 26px 0; }
+.profile-specialties h3 { font-size: 23px; margin-bottom: 12px; }
+.profile-specialties ul { margin: 0; padding-left: 19px; color: var(--muted); font-size: 14px; }
+.profile-specialties li { padding: 3px 0 3px 4px; }

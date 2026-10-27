@@ -30,3 +30,9 @@ Persönliche Ansprache mit «du». Leitgedanke: «Stellt dich auf!» Fachbegriff
 Fachliche Freigabe der Beschreibungen, tatsächlicher Sitzungsablauf, persönliche Vorstellung und Ausbildung in ScarWork, aktuelle Tarife und Sitzungsdauern, Absagebedingungen, bestätigte Anerkennungen bei Zusatzversicherungen sowie finale Anbieter- und Datenschutzangaben. Diese Angaben werden bis dahin nicht erfunden.
 
 Grundlage: bereitgestelltes Praxiskonzept vom 27. Oktober 2026 und die im Gespräch freigegebene Landingpage. Diese Fassung ersetzt für den Prototyp die frühere Ausrichtung auf umfangreiche Bedürfnisseiten, neue Angebotsformate und Online-Buchung.
+
+## Ergänzung: Sarahs Fachprofil
+
+Quelle: vom Nutzer bereitgestellter Screenshot des Rolfing-Fachprofils «Praxis Balance-Sarah Herren». Kein Profil-Link vorhanden. Übernommen: Certified Advanced Rolfer®; Deutsch inklusive Schweizerdeutsch, Französisch, Englisch; Visceral Fascial Work, Chronic Pain Treatment und Scar Treatment / Scar Integration. Die Schwerpunkte sind im Prototyp auf Deutsch wiedergegeben. Die generische Verzeichniskategorie «Other» wird nicht als Qualifikation übernommen. Persönlicher Werdegang, Ausbildungsjahre und weitere Anerkennungen sind dadurch nicht belegt.
+
+Das mitgesendete Porträt ist im Chat sichtbar; für die Einbindung wird die Originaldatei benötigt. Sie lag beim Einpflegen der Profilangaben noch nicht als herunterladbarer Upload vor.
