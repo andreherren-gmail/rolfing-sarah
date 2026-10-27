@@ -1,13 +1,17 @@
-import { mkdir, copyFile, cp, access, rm, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, cp, access, rm, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { addSeo, origin, sitemap } from './seo.mjs';
 
 for (const file of ['assets/balance.avif', 'assets/steine.avif']) {
   try { await access(file); } catch { throw new Error(`Required original image missing: ${file}`); }
 }
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
-await copyFile('robots.txt', 'dist/robots.txt');
-await cp('assets', 'dist/assets', { recursive: true });
+const robots = await readFile('robots.txt', 'utf8');
+await writeFile('dist/robots.txt', `${robots.trimEnd()}\n\nSitemap: ${origin}/sitemap.xml\n`);
+await writeFile('dist/sitemap.xml', sitemap());
+const originalPngs = new Set(['faszien.png', 'narbe.png', 'praxis-bern-platzhalter.png', 'praxis-niederscherli-platzhalter.png']);
+await cp('assets', 'dist/assets', { recursive: true, filter: source => !originalPngs.has(source.split('/').pop()) });
 
 // Every page loads the exact stylesheet and script belonging to this build.
 // Shared filenames would allow a cached prototype stylesheet on the landing page.
@@ -24,7 +28,7 @@ for (const directory of ['', 'prototyp/']) {
     await writeFile(`dist/${directory}${file}`, content);
     html = html.replaceAll(`"${file}"`, `"${versioned}"`);
   }
-  await writeFile(`dist/${directory}index.html`, html);
+  await writeFile(`dist/${directory}index.html`, addSeo(html, `/${directory}`));
 }
 // Prototype subpages share its versioned stylesheet and script.
 for (const page of ['preise', 'praxen']) {
@@ -37,6 +41,6 @@ for (const page of ['preise', 'praxen']) {
     const versioned = `${file.slice(0, dot)}.${hash}${file.slice(dot)}`;
     html = html.replaceAll(`"../${file}"`, `"../${versioned}"`);
   }
-  await writeFile(`dist/prototyp/${page}/index.html`, html);
+  await writeFile(`dist/prototyp/${page}/index.html`, addSeo(html, `/prototyp/${page}/`));
 }
 console.log('Built landing page, prototype and subpages with versioned assets → dist/');

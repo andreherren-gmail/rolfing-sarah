@@ -57,3 +57,13 @@ Der Build versieht CSS und JavaScript jeder Seite mit einem Inhalts-Hash im Date
 Der ausführliche Entwurf unter `/prototyp/` folgt der blau-weissen Farbwelt der Landingpage. Er erklärt Rolfing®, Faszientherapie und ScarWork – Narbenarbeit, die Zusammenhänge der Ansätze, den Behandlungsablauf und häufige Fragen. Kontakt bleibt per Telefon oder E-Mail; es gibt kein Reservationssystem. Das überarbeitete Konzept und die noch zu bestätigenden Inhalte stehen in `docs/konzept-prototyp.md`.
 
 Die Navigation des Prototyps enthält vier Einträge und bleibt beim Scrollen sichtbar. Auf den Einstieg folgt direkt Sarahs Vorstellung, danach die Methoden ohne Auswahlkacheln oder Abschnittsnummern. `/prototyp/preise/` zeigt eine eigene Preis- und Versicherungsseite mit ausdrücklich markierten offenen Angaben für Sarah.
+
+## SEO und strukturierte Daten
+
+`site.config.json` legt die aktuelle öffentliche Hauptadresse fest (`https://balance-40bed.web.app`). Bei einem Domainwechsel zuerst die neue Domain verbinden und prüfen, dann `origin` dort umstellen, neu bauen und veröffentlichen. Anschliessend Weiterleitungen von bisherigen Adressen sowie Search Console separat konfigurieren. Die Build-Ausgabe erhält Canonical-Adressen und Open-Graph-Metadaten je Seite. Die Landingpage enthält JSON-LD für Sarah, die Organisation, beide Praxisstandorte und die drei Tätigkeitsbereiche. Es werden keine Versicherungsanerkennungen, Öffnungszeiten, Bewertungen oder Preise erfunden.
+
+`dist/sitemap.xml` enthält ausschliesslich die Landingpage. Die ausgelieferte `robots.txt` verweist auf diese Sitemap; `/prototyp/` bleibt gesperrt und alle Entwurfsseiten behalten `noindex, nofollow`. Eine robots.txt-Sperre verhindert das Crawlen und ist keine Garantie für eine Entfernung bereits indexierter URLs. Wenn Entwurfsseiten bereits in einer Suche erscheinen, gezielt Crawling für das Erkennen von `noindex` erlauben oder geeignete Entfernungsmassnahmen prüfen. Diese Regeln erst bei der inhaltlichen Freigabe ändern.
+
+Die SEO-Ergänzungen entstehen im Build: für ihre Prüfung `npm run build` und `npm run preview` verwenden. Der einfache Entwicklungsserver liefert die Quelldateien ohne die zusätzlich erzeugten SEO-Tags. Die Bilddateien Faszien, Narbe und Praxisplatzhalter werden als WebP ausgeliefert. Ihre PNG-Originale bleiben im Repository, werden aber nicht ins Deployment kopiert.
+
+Noch ausserhalb des Codes offen: Hauptdomain verbinden, Google Search Console verifizieren und Sitemap einreichen, Google-Unternehmensprofile je berechtigtem Standort prüfen und Fachverzeichnisse auf einheitliche Praxisdaten abgleichen. Fachliche Autorenschaft, Preise und Anerkennungen erst nach Sarahs Bestätigung vervollständigen; diese Optimierungen garantieren keine Rankings oder KI-Zitate.
