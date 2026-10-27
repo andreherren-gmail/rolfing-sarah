@@ -55,3 +55,5 @@ Der Build versieht CSS und JavaScript jeder Seite mit einem Inhalts-Hash im Date
 ## Informativer Prototyp
 
 Der ausführliche Entwurf unter `/prototyp/` folgt der blau-weissen Farbwelt der Landingpage. Er erklärt Rolfing®, Faszientherapie und ScarWork – Narbenarbeit, die Zusammenhänge der Ansätze, den Behandlungsablauf und häufige Fragen. Kontakt bleibt per Telefon oder E-Mail; es gibt kein Reservationssystem. Das überarbeitete Konzept und die noch zu bestätigenden Inhalte stehen in `docs/konzept-prototyp.md`.
+
+Die Navigation des Prototyps enthält vier Einträge und bleibt beim Scrollen sichtbar. Auf den Einstieg folgt direkt Sarahs Vorstellung, danach die Methoden ohne Auswahlkacheln oder Abschnittsnummern. `/prototyp/preise/` zeigt eine eigene Preis- und Versicherungsseite mit ausdrücklich markierten offenen Angaben für Sarah.

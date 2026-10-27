@@ -26,4 +26,15 @@ for (const directory of ['', 'prototyp/']) {
   }
   await writeFile(`dist/${directory}index.html`, html);
 }
-console.log('Built landing page and /prototyp/ with versioned CSS and JavaScript → dist/');
+// The prices page shares the prototype's versioned stylesheet and script.
+await mkdir('dist/prototyp/preise', { recursive: true });
+let prices = await readFile('prototyp/preise/index.html', 'utf8');
+for (const file of ['styles.css', 'app.js']) {
+  const content = await readFile(`prototyp/${file}`);
+  const hash = createHash('sha256').update(content).digest('hex').slice(0, 12);
+  const dot = file.lastIndexOf('.');
+  const versioned = `${file.slice(0, dot)}.${hash}${file.slice(dot)}`;
+  prices = prices.replaceAll(`"../${file}"`, `"../${versioned}"`);
+}
+await writeFile('dist/prototyp/preise/index.html', prices);
+console.log('Built landing page, prototype and prices page with versioned assets → dist/');

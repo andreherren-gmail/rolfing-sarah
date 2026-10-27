@@ -14,16 +14,13 @@ Persönliche Ansprache mit «du». Leitgedanke: «Stellt dich auf!» Fachbegriff
 
 ## Inhaltlicher Aufbau
 
-1. **Einstieg:** Rolfing® · Faszientherapie · ScarWork – Narbenarbeit; Leitgedanke und kurze Einordnung.
-2. **Tätigkeitsbereiche:** Drei gleichwertige Einstiege mit direkten Sprüngen zu ausführlichen Erläuterungen.
-3. **Rolfing® / Strukturelle Integration:** Haltung, Bewegung, Körperwahrnehmung; manuelle Arbeit und aktive Beteiligung; Einordnung der klassischen 10er-Serie ohne Paketverkauf.
-4. **Faszientherapie:** Was Faszien sind, manuelle Arbeit am Bindegewebe und Bezug zu Alltag und Belastung. Zusammenhang mit Rolfing transparent machen; keine künstliche Trennung versprechen.
-5. **ScarWork / Narbenarbeit:** Verheilte Narben nach Operation oder Unfall, auch Kaiserschnitt; achtsame Berührung, Einverständnis und individuelle Wahrnehmung. Keine Zusage, Narben zu entfernen. Medizinische Abklärung bei offenen, entzündeten oder frisch operierten Stellen.
-6. **Sarah:** Name, vorhandene Qualifikation und sachliche Einordnung des Angebots. Persönliche Geschichte und weitere Zertifikate erst nach Bestätigung ergänzen.
-7. **Ablauf:** Gespräch, Haltung und Bewegung betrachten, manuelle Arbeit, gemeinsame Einordnung der nächsten Schritte. Keine unbestätigten Sitzungsdauern.
-8. **Fragen:** Auswahl der Methode, Druckempfinden, Kleidung, Anzahl Sitzungen, ältere Narben, Kosten und Zusatzversicherung.
-9. **Praxen und Kontakt:** Bern und Niederscherli, Telefon, E-Mail und externe Anfahrtslinks. Keine Online-Reservation.
-10. **Impressum und Datenschutz:** zugänglicher Dialog; Entwurfsstatus und noch ausstehende Bestätigung sichtbar.
+Das gut sichtbare, beim Scrollen stehenbleibende Hauptmenü enthält vier Einträge: Über Sarah, Behandlungen, Preise & Versicherung, Kontakt. Auf Mobilgeräten öffnet eine deutlich kontrastierende Menüschaltfläche dieselben Einträge. Keine zusätzlichen Kacheln und keine technischen Abschnittsnummern.
+
+Auf `/prototyp/` folgen direkt auf den Einstieg Sarahs Porträt und Vorstellung. Anschliessend stehen die ausführlichen Inhalte zu Rolfing®, Faszientherapie und ScarWork – Narbenarbeit ohne vorgeschaltete Auswahlkacheln. Ablauf, häufige Fragen und die beiden Praxen mit Kontakt schliessen die Seite ab. Die Hauptseite `/` bleibt unverändert.
+
+`/prototyp/preise/` ist eine eigene Seite im selben Layout. Eine Übersicht enthält die drei Behandlungsbereiche mit ausdrücklich offenen Sitzungsdauern und Preisen. Weitere Abschnitte markieren fehlende Zahlungs- und Absagebedingungen, EMR-/ASCA-Angaben und Versicherungsbelege. Keine Tarife oder Anerkennungen werden erfunden. Die Seite soll Sarah konkret zeigen, welche Angaben für die Freigabe noch fehlen.
+
+Impressum und Datenschutz bleiben über den Footer auf beiden Seiten erreichbar. Der informative Umfang bleibt bestehen: keine Online-Reservation, Benutzerkonten oder Zahlungsfunktion.
 
 ## Noch mit Sarah abzustimmen
 
