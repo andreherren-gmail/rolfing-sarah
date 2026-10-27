@@ -51,3 +51,7 @@ Das vom Nutzer als `narbe.zip` gelieferte Narbenmotiv ist unverändert als `asse
 ## Aktualisierung der Praxisangaben
 
 Die vom Nutzer in `praxen.zip` gelieferten Raummotive (`bern.png`, `niederscherlu.png`) ersetzen die abstrakten Bildplatzhalter. Beide bleiben ausdrücklich als Bildplatzhalter gekennzeichnet. Bern: BERNMOBIL Buslinie 12, Haltestelle Rathaus; keine eigenen Parkplätze, Parkhäuser Rathaus oder Metro in der Nähe. Als Feldbezeichnung wird «Etage» verwendet; die konkrete Etage ist noch offen. Angaben zum Lift und Zugang bleiben unbestätigt.
+
+## Beruflicher Hintergrund
+
+Laut Ergänzung des Nutzers bringt Sarah über 20 Jahre Erfahrung im Gesundheitswesen mit, darunter Arbeit als Pflegefachfrau und leitende Funktionen in der Pflege am Inselspital Bern. Der Vorstellungstext verbindet diesen Hintergrund mit ihrer heutigen Körperarbeit, ohne einen vollständigen Wechsel aus der Pflege zu behaupten. Genaue Berufsbezeichnung und Führungsfunktion sind vor der endgültigen Freigabe mit Sarah abzustimmen.
