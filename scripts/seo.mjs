@@ -16,7 +16,7 @@ function structuredData() {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'WebSite', '@id': entityId('website'), url: url('/'), name: config.name, inLanguage: 'de-CH', publisher: { '@id': organization } },
-      { '@type': 'WebPage', '@id': entityId('webpage'), url: url('/'), name: 'Rolfing & Faszientherapie Bern – Sarah Herren', inLanguage: 'de-CH', isPartOf: { '@id': entityId('website') }, about: { '@id': organization } },
+      { '@type': 'WebPage', '@id': entityId('webpage'), url: url('/'), name: 'Rolfing & Faszientherapie Bern | Sarah Herren', inLanguage: 'de-CH', isPartOf: { '@id': entityId('website') }, about: { '@id': organization } },
       { '@type': 'Person', '@id': person, name: 'Sarah Herren', jobTitle: 'Certified Advanced Rolfer®', worksFor: { '@id': organization } },
       {
         '@type': 'Organization', '@id': organization, name: config.name, url: url('/'),
@@ -24,7 +24,7 @@ function structuredData() {
         department: [{ '@id': entityId('praxis-bern') }, { '@id': entityId('praxis-niederscherli') }],
         hasOfferCatalog: {
           '@type': 'OfferCatalog', name: 'Tätigkeitsbereiche',
-          itemListElement: ['Rolfing® – Strukturelle Integration', 'Faszientherapie', 'ScarWork – Narbenarbeit'].map(name => ({
+          itemListElement: ['Rolfing®: Strukturelle Integration', 'Faszientherapie', 'ScarWork: Narbenarbeit'].map(name => ({
             '@type': 'Offer', itemOffered: { '@type': 'Service', name, provider: { '@id': organization } }
           }))
         }
@@ -33,7 +33,7 @@ function structuredData() {
         ['praxis-bern', 'Praxis Bern', 'Kramgasse 12', '3011', 'Bern'],
         ['praxis-niederscherli', 'Praxis Niederscherli', 'Schwarzenburgstrasse 854', '3145', 'Niederscherli']
       ].map(([id, label, street, postalCode, locality]) => ({
-        '@type': 'LocalBusiness', '@id': entityId(id), name: `${config.name} – ${label}`,
+        '@type': 'LocalBusiness', '@id': entityId(id), name: `${config.name}, ${label}`,
         url: url('/'), parentOrganization: { '@id': organization }, telephone: '+41792327139', email: 'info@rolfing-herren.ch',
         address: { '@type': 'PostalAddress', streetAddress: street, postalCode, addressLocality: locality, addressCountry: 'CH' }
       }))

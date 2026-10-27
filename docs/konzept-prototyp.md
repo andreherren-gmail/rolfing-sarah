@@ -57,3 +57,7 @@ Die vom Nutzer in `praxen.zip` gelieferten Raummotive (`bern.png`, `niederscherl
 Laut Ergänzung des Nutzers bringt Sarah über 20 Jahre Erfahrung im Gesundheitswesen mit, darunter Arbeit als Pflegefachfrau und leitende Funktionen in der Pflege am Inselspital Bern. Der Vorstellungstext verbindet diesen Hintergrund mit ihrer heutigen Körperarbeit, ohne einen vollständigen Wechsel aus der Pflege zu behaupten. Genaue Berufsbezeichnung und Führungsfunktion sind vor der endgültigen Freigabe mit Sarah abzustimmen.
 
 Das Porträt wurde durch die anschliessend vom Nutzer bereitgestellte PNG-Datei ersetzt. Es wird ohne Zuschnitt oder inhaltliche Bearbeitung als grössenoptimierte WebP-Datei `assets/sarah-herren-portraet.webp` mit den Originalabmessungen ausgeliefert.
+
+## Sprachliche Leitlinien
+
+Schweizer Hochdeutsch mit ss statt ß. Persönliche Ansprache mit «du». Die Texte sollen ruhig, sachlich und einfühlsam sein. Keine Gedankenstriche, Ausrufezeichen, werblichen Versprechen oder zugespitzten Slogans. Überschriften benennen die Inhalte. Fragen sind dort sinnvoll, wo sie konkrete Informationen erschliessen, etwa in den FAQ. Fachbegriffe werden verständlich erklärt. Unsichere Angaben bleiben als offen gekennzeichnet.

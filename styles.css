@@ -2,3 +2,5 @@
 
 /* Keep the original logo artwork and blend its white background into the sky. */
 .eyebrow{text-transform:uppercase;line-height:1.9}.eyebrow span{display:inline-block}.tagline{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.55;max-width:540px;margin:0 0 30px}.description{max-width:470px}@media(max-width:700px){.eyebrow{letter-spacing:1.2px}.tagline{font-size:19px;margin-bottom:25px}.description{max-width:350px}}
+
+@media (max-width: 700px) { h1 { font-size: clamp(36px, 10vw, 51px); letter-spacing: -1.2px; } }
