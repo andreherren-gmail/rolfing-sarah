@@ -47,3 +47,7 @@ Die Landingpage ist für Suchmaschinen freigegeben. `/prototyp/` bleibt durch `r
 ## Inhalt
 
 Kontaktdaten und Qualifikation stammen aus dem bereitgestellten Praxiskonzept. Impressum und Datenschutz enthalten einen ausdrücklichen Hinweis auf die noch ausstehende Bestätigung durch Sarah. Es gibt keine Online-Buchung und kein Kontaktformular. E-Mail- und Telefonlinks sind aktiv. Die eigene Domain sowie Weiterleitungen alter Wix-Adressen werden separat eingerichtet.
+
+## Cache bei Veröffentlichungen
+
+Der Build versieht CSS und JavaScript jeder Seite mit einem Inhalts-Hash im Dateinamen. Firebase liefert Dateien mit Revalidierung aus, damit eine neue Landingpage nicht mit zwischengespeicherten Prototyp-Styles kombiniert wird. Die Originaldateinamen bleiben für bereits geöffnete Seiten verfügbar.
