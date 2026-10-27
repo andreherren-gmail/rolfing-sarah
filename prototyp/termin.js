@@ -1,123 +1,210 @@
 const assistant = document.querySelector('.appointment-assistant');
 if (assistant) {
   const steps = [...assistant.querySelectorAll('.appointment-step')];
-  const placeForm = document.querySelector('#place-form');
-  const timeForm = document.querySelector('#time-form');
-  const typeForm = document.querySelector('#type-form');
-  const date = document.querySelector('#preferred-date');
-  const flexibleDate = document.querySelector('#flexible-date');
-  const period = document.querySelector('#preferred-period');
-  const time = document.querySelector('#preferred-time');
+  const forms = ['place', 'type', 'time', 'contact'].map(id => document.querySelector(`#${id}-form`));
+  const [placeForm, typeForm, timeForm, contactForm] = forms;
+  const date = document.querySelector('#booking-date');
+  const slots = document.querySelector('#time-slots');
   const status = document.querySelector('.assistant-status');
-  const places = {
-    bern: 'Bern, Kramgasse 12, 3011 Bern',
-    niederscherli: 'Niederscherli, Schwarzenburgstrasse 854, c/o Physiotherapie Niederscherli, 3145 Niederscherli',
-    flexible: 'Beide Standorte sind möglich'
-  };
-  const periods = { morning: 'Vormittag', afternoon: 'Nachmittag', evening: 'Früher Abend', flexible: 'Zeitlich flexibel' };
-  const treatments = { rolfing: 'Rolfing®', fascia: 'Faszientherapie', scar: 'ScarWork: Narbenarbeit', unsure: 'Die passende Behandlung zuerst besprechen' };
-  const visits = { first: 'Erster Termin bei Sarah', returning: 'Bereits bei Sarah in Behandlung gewesen' };
-  const selected = (form, name) => form.querySelector(`input[name="${name}"]:checked`)?.value || '';
+  const slotError = document.querySelector('#slot-error');
+  const reviewForm = document.querySelector('#review-form');
+  const name = document.querySelector('#customer-name');
+  const email = document.querySelector('#customer-email');
+  const phone = document.querySelector('#customer-phone');
+  const storageKey = 'balance.booking-demo.v1';
+  const times = ['08:00', '09:30', '11:00', '12:30', '14:00', '15:30'];
+  const sampleBusy = new Set(['09:30', '14:00']);
+  const places = { bern: { name: 'Bern', day: 1, weekday: 'Montag', address: 'Kramgasse 12, 3011 Bern' }, niederscherli: { name: 'Niederscherli', day: 2, weekday: 'Dienstag', address: 'Schwarzenburgstrasse 854, 3145 Niederscherli' } };
+  const treatments = { rolfing: 'Rolfing®', fascia: 'Faszientherapie', scar: 'ScarWork: Narbenarbeit', unsure: 'Passende Behandlung zuerst besprechen' };
+  const visits = { first: 'Erster Termin', returning: 'Folgetermin' };
+  const selected = (form, field) => form.querySelector(`input[name="${field}"]:checked`)?.value || '';
+  let chosenTime = '';
+  let memoryBookings = [];
+  let storageAvailable = true;
+  let booking = false;
 
-  function localClock() {
-    const parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/Zurich', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
-    }).formatToParts(new Date());
-    const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
-    return { date: `${values.year}-${values.month}-${values.day}`, time: `${values.hour}:${values.minute}` };
+  function clock() {
+    const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Zurich', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(p => [p.type, p.value]));
+    return { date: `${parts.year}-${parts.month}-${parts.day}`, time: `${parts.hour}:${parts.minute}` };
   }
-
-  function updateTimeFields() {
-    const now = localClock();
+  function dayObject(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+    const [y, m, d] = value.split('-').map(Number);
+    const result = new Date(Date.UTC(y, m - 1, d, 12));
+    return Number.isFinite(result.getTime()) && result.toISOString().slice(0, 10) === value ? result : null;
+  }
+  const dayString = value => value.toISOString().slice(0, 10);
+  function readableDate(value) {
+    const day = dayObject(value);
+    return day ? new Intl.DateTimeFormat('de-CH', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(day) : '';
+  }
+  function endTime(value) {
+    const [hours, minutes] = value.split(':').map(Number);
+    const end = hours * 60 + minutes + 75;
+    return `${String(Math.floor(end / 60)).padStart(2, '0')}:${String(end % 60).padStart(2, '0')}`;
+  }
+  function storageUnavailable() {
+    storageAvailable = false;
+    document.querySelector('#storage-note').hidden = false;
+  }
+  function readBookings() {
+    if (!storageAvailable) return [...memoryBookings];
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      memoryBookings = Array.isArray(saved) ? saved.filter(v => typeof v === 'string' && /^(bern|niederscherli)\|\d{4}-\d{2}-\d{2}\|\d{2}:\d{2}$/.test(v)).slice(-200) : [];
+    } catch { storageUnavailable(); }
+    return [...memoryBookings];
+  }
+  function saveBookings(values) {
+    memoryBookings = values.slice(-200);
+    if (storageAvailable) try { localStorage.setItem(storageKey, JSON.stringify(memoryBookings)); } catch { storageUnavailable(); }
+  }
+  const slotKey = time => `${selected(placeForm, 'place')}|${date.value}|${time}`;
+  function isPracticeDay() {
+    const place = places[selected(placeForm, 'place')];
+    const day = dayObject(date.value);
+    return !!place && !!day && day.getUTCDay() === place.day && date.value >= date.min && date.value <= date.max;
+  }
+  function unavailable(time) {
+    const now = clock();
+    return !isPracticeDay() || !times.includes(time) || sampleBusy.has(time) || readBookings().includes(slotKey(time)) || (date.value === now.date && time <= now.time);
+  }
+  function nextDate() {
+    const place = places[selected(placeForm, 'place')];
+    if (!place) return;
+    const now = clock();
+    const day = dayObject(now.date);
+    for (let i = 0; i <= 90; i++) {
+      date.value = dayString(day);
+      if (day.getUTCDay() === place.day && times.some(time => !unavailable(time))) break;
+      day.setUTCDate(day.getUTCDate() + 1);
+    }
+    chosenTime = '';
+    renderSlots();
+  }
+  function renderSlots() {
+    const now = clock();
     date.min = now.date;
-    date.disabled = flexibleDate.checked;
-    date.required = !flexibleDate.checked;
-    const exact = period.value === 'exact';
-    document.querySelector('#exact-time-field').hidden = !exact;
-    time.disabled = !exact;
-    time.required = exact;
-    time.setCustomValidity('');
-    if (exact && !flexibleDate.checked && date.value === now.date && time.value && time.value <= now.time) {
-      time.setCustomValidity('Bitte wähle eine Uhrzeit, die noch bevorsteht, oder ein anderes Datum.');
+    const limit = dayObject(now.date); limit.setUTCDate(limit.getUTCDate() + 90); date.max = dayString(limit);
+    slots.replaceChildren();
+    const place = places[selected(placeForm, 'place')];
+    const hint = document.querySelector('#schedule-hint');
+    if (!place) { hint.textContent = 'Bitte wähle zuerst einen Standort.'; chosenTime = ''; update(); return; }
+    hint.textContent = `Beispielzeiten in ${place.name}: ${place.weekday}, 8 bis 17 Uhr. Behandlung: 75 Minuten, anschliessend 15 Minuten Pause.`;
+    if (!isPracticeDay()) {
+      const note = document.createElement('p'); note.className = 'field-note'; note.textContent = date.value ? `An diesem Datum sind keine Beispieltermine vorgesehen. Wähle einen ${place.weekday} oder nutze den nächsten Behandlungstag.` : 'Bitte wähle ein Datum.'; slots.append(note); chosenTime = ''; update(); return;
     }
-  }
-
-  function valid(form) {
-    return [...form.elements].every(field => !field.willValidate || field.validity.valid);
-  }
-
-  function formatDate(value) {
-    if (!value) return '';
-    const [year, month, day] = value.split('-').map(Number);
-    return new Intl.DateTimeFormat('de-CH', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(year, month - 1, day, 12));
-  }
-
-  function timeDescription() {
-    const day = flexibleDate.checked ? 'Datum flexibel' : formatDate(date.value);
-    const timing = period.value === 'exact' ? (time.value ? `${time.value} Uhr` : '') : periods[period.value];
-    return [day, timing].filter(Boolean).join(', ');
-  }
-
-  function update() {
-    updateTimeFields();
-    const place = selected(placeForm, 'place');
-    const treatment = selected(typeForm, 'treatment');
-    const visit = selected(typeForm, 'visit');
-    const complete = [placeForm, timeForm, typeForm].every(valid);
-    assistant.querySelector('[data-answer="place"]').textContent = place === 'bern' ? 'Bern' : place === 'niederscherli' ? 'Niederscherli' : place ? 'Flexibel' : 'Bitte wählen';
-    assistant.querySelector('[data-answer="time"]').textContent = valid(timeForm) ? timeDescription() : 'Noch offen';
-    assistant.querySelector('[data-answer="type"]').textContent = valid(typeForm) ? treatments[treatment] : 'Noch offen';
-    assistant.querySelector('[data-answer="review"]').textContent = complete ? 'Bereit zum Prüfen' : 'Noch unvollständig';
-    document.querySelector('#review-incomplete').hidden = complete;
-    document.querySelector('#review-ready').hidden = !complete;
-    if (!complete) {
-      document.querySelector('#request-email').href = 'mailto:info@rolfing-herren.ch';
-      document.querySelector('#request-text').value = '';
-      return;
+    if (chosenTime && unavailable(chosenTime)) chosenTime = '';
+    for (const time of times) {
+      const disabled = unavailable(time);
+      const label = document.createElement('label'); label.className = 'slot-option';
+      const input = document.createElement('input'); input.type = 'radio'; input.name = 'slot'; input.value = time; input.disabled = disabled; input.required = true; input.checked = chosenTime === time;
+      const text = document.createElement('span'); text.textContent = time;
+      const state = document.createElement('small'); state.textContent = disabled ? 'Belegt' : 'Frei';
+      input.addEventListener('change', () => { chosenTime = time; slotError.hidden = true; update(); });
+      label.append(input, text, state); slots.append(label);
     }
-    document.querySelector('#review-place').textContent = places[place];
-    document.querySelector('#review-time').textContent = timeDescription();
-    document.querySelector('#review-type').textContent = treatments[treatment];
-    document.querySelector('#review-visit').textContent = visits[visit];
-    const body = [
-      'Guten Tag Sarah', '', 'Ich möchte gerne einen Termin anfragen.', '',
-      `Ort: ${places[place]}`, `Datum und Zeit: ${timeDescription()}`,
-      `Behandlung: ${treatments[treatment]}`, `Besuch: ${visits[visit]}`, '',
-      'Bitte teile mir mit, ob mein Terminwunsch möglich ist oder welche Alternative du vorschlägst.', '',
-      'Mein Name: [bitte ergänzen]', 'Meine Rückrufnummer (optional): [bitte ergänzen]', '',
-      'Freundliche Grüsse'
-    ].join('\n');
-    document.querySelector('#request-text').value = body;
-    document.querySelector('#request-email').href = `mailto:info@rolfing-herren.ch?subject=${encodeURIComponent('Terminanfrage')}&body=${encodeURIComponent(body)}`;
-  }
-
-  function openStep(target) {
-    for (const step of steps) step.open = step === target;
-    target.querySelector('summary').focus({ preventScroll: true });
-    target.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-    status.textContent = {
-      place: 'Wähle einen Standort.', time: 'Gib deinen gewünschten Zeitpunkt an.',
-      type: 'Wähle eine Behandlungsart.', review: 'Prüfe deine Angaben. Es wurde noch keine Anfrage gesendet.'
-    }[target.dataset.step];
     update();
   }
-
+  function valid(form) { return [...form.elements].every(field => !field.willValidate || field.validity.valid); }
+  function validateContact() {
+    name.setCustomValidity(name.value && name.value.trim().length < 2 ? 'Bitte gib deinen Vor- und Nachnamen an.' : '');
+    const digits = phone.value.replace(/\D/g, '');
+    phone.setCustomValidity(phone.value && (!/^[+\d\s().-]+$/.test(phone.value) || digits.length < 7 || digits.length > 15) ? 'Bitte gib eine gültige Telefonnummer an.' : '');
+  }
+  function complete() { return forms.every(valid) && !!chosenTime && !unavailable(chosenTime); }
+  function summaryRows() {
+    const place = places[selected(placeForm, 'place')];
+    return [
+      ['Ort', `${place.name}, ${place.address}`], ['Datum', readableDate(date.value)], ['Zeit', `${chosenTime} bis ${endTime(chosenTime)} Uhr`],
+      ['Behandlung', treatments[selected(typeForm, 'treatment')]], ['Besuch', visits[selected(typeForm, 'visit')]],
+      ['Name', name.value.trim()], ['E-Mail', email.value.trim()], ['Telefon', phone.value.trim()]
+    ];
+  }
+  function fillSummary(target, rows) {
+    target.replaceChildren();
+    for (const [heading, value] of rows) {
+      const row = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+      dt.textContent = heading; dd.textContent = value; row.append(dt, dd); target.append(row);
+    }
+  }
+  function update() {
+    validateContact();
+    const place = places[selected(placeForm, 'place')];
+    const treatment = treatments[selected(typeForm, 'treatment')];
+    const ready = complete();
+    document.querySelector('[data-answer="place"]').textContent = place?.name || 'Bitte wählen';
+    document.querySelector('[data-answer="type"]').textContent = valid(typeForm) ? treatment : 'Noch offen';
+    document.querySelector('[data-answer="time"]').textContent = chosenTime && !unavailable(chosenTime) ? `${new Intl.DateTimeFormat('de-CH', { day: '2-digit', month: '2-digit', timeZone: 'UTC' }).format(dayObject(date.value))}, ${chosenTime}` : 'Noch offen';
+    document.querySelector('[data-answer="contact"]').textContent = valid(contactForm) ? 'Vollständig' : 'Noch offen';
+    document.querySelector('[data-answer="review"]').textContent = ready ? 'Bereit zum Prüfen' : 'Noch unvollständig';
+    reviewForm.hidden = !ready;
+    document.querySelector('#review-incomplete').hidden = ready;
+    if (ready) fillSummary(document.querySelector('#booking-summary'), summaryRows());
+    else document.querySelector('#booking-summary').replaceChildren();
+  }
+  function openStep(step) {
+    for (const item of steps) item.open = item === step;
+    step.querySelector('summary').focus({ preventScroll: true });
+    step.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    status.textContent = { place: 'Wähle einen Standort.', type: 'Wähle eine Behandlung.', time: 'Wähle ein Datum und eine freie Uhrzeit.', contact: 'Ergänze deine Testdaten.', review: 'Prüfe deine Angaben vor dem Abschluss.' }[step.dataset.step];
+    update();
+  }
   for (const step of steps) {
-    step.querySelector('summary').addEventListener('click', () => {
-      if (!step.open) for (const other of steps) if (other !== step) other.open = false;
-    });
+    step.querySelector('summary').addEventListener('click', () => { if (!step.open) for (const other of steps) if (other !== step) other.open = false; });
     step.addEventListener('toggle', update);
   }
-  for (const [index, form] of [placeForm, timeForm, typeForm].entries()) {
+  for (const [index, form] of forms.entries()) {
     form.noValidate = true;
     form.addEventListener('submit', event => {
-      event.preventDefault();
-      update();
+      event.preventDefault(); update();
       if (!form.reportValidity()) return;
+      if (form === timeForm && (!chosenTime || unavailable(chosenTime))) { slotError.textContent = 'Bitte wähle eine freie Uhrzeit an einem Behandlungstag.'; slotError.hidden = false; return; }
       openStep(steps[index + 1]);
     });
     form.addEventListener('input', update);
     form.addEventListener('change', update);
   }
-  update();
+  placeForm.addEventListener('change', nextDate);
+  date.addEventListener('change', () => { chosenTime = ''; slotError.hidden = true; renderSlots(); });
+  document.querySelector('#next-practice-day').addEventListener('click', nextDate);
+  reviewForm.noValidate = true;
+  reviewForm.addEventListener('submit', async event => {
+    event.preventDefault(); if (booking) return;
+    update(); if (!complete() || !reviewForm.reportValidity()) return;
+    booking = true; const button = document.querySelector('#book-button'); button.disabled = true;
+    const finish = () => {
+      if (unavailable(chosenTime)) return false;
+      const key = slotKey(chosenTime); const rows = summaryRows();
+      saveBookings([...new Set([...readBookings(), key])]);
+      fillSummary(document.querySelector('#success-summary'), rows);
+      return true;
+    };
+    try {
+      const saved = navigator.locks ? await navigator.locks.request('balance-demo-booking', finish) : finish();
+      if (!saved) {
+        chosenTime = ''; renderSlots(); openStep(steps[2]); slotError.textContent = 'Diese Zeit ist inzwischen belegt. Bitte wähle eine andere Uhrzeit.'; slotError.hidden = false; return;
+      }
+      document.querySelector('#booking-steps').hidden = true;
+      const success = document.querySelector('#booking-success'); success.hidden = false; success.focus(); success.scrollIntoView({ block: 'start' });
+      contactForm.reset(); reviewForm.reset(); document.querySelector('#booking-summary').replaceChildren();
+    } finally { booking = false; button.disabled = false; }
+  });
+  document.querySelector('#start-another').addEventListener('click', () => {
+    document.querySelector('#booking-success').hidden = true; document.querySelector('#success-summary').replaceChildren(); document.querySelector('#booking-steps').hidden = false;
+    chosenTime = ''; renderSlots(); openStep(steps[2]);
+  });
+  document.querySelector('.demo-reset').addEventListener('click', () => { saveBookings([]); renderSlots(); status.textContent = 'Deine Testbuchungen wurden zurückgesetzt. Die Beispielbelegungen bleiben bestehen.'; });
+  window.addEventListener('storage', event => {
+    if (event.key !== storageKey) return;
+    const previous = chosenTime;
+    renderSlots();
+    if (previous && !chosenTime && !document.querySelector('#booking-steps').hidden) {
+      openStep(steps[2]);
+      slotError.textContent = 'Diese Zeit wurde in einem anderen Tab testweise gebucht. Bitte wähle eine andere Uhrzeit.';
+      slotError.hidden = false;
+    }
+  });
+  date.min = clock().date; const limit = dayObject(date.min); limit.setUTCDate(limit.getUTCDate() + 90); date.max = dayString(limit);
+  readBookings(); renderSlots();
 }

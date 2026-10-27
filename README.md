@@ -46,7 +46,7 @@ Die Landingpage ist für Suchmaschinen freigegeben. `/prototyp/` bleibt durch `r
 
 ## Inhalt
 
-Kontaktdaten und Qualifikation stammen aus dem bereitgestellten Praxiskonzept. Impressum und Datenschutz enthalten einen ausdrücklichen Hinweis auf die noch ausstehende Bestätigung durch Sarah. Es gibt keine Online-Buchung und kein Kontaktformular. E-Mail- und Telefonlinks sind aktiv. Die eigene Domain sowie Weiterleitungen alter Wix-Adressen werden separat eingerichtet.
+Kontaktdaten und Qualifikation stammen aus dem bereitgestellten Praxiskonzept. Impressum und Datenschutz enthalten einen ausdrücklichen Hinweis auf die noch ausstehende Bestätigung durch Sarah. Es gibt noch keine produktive Online-Buchung. Der Buchungsprototyp ist ausdrücklich als Demo gekennzeichnet. E-Mail- und Telefonlinks sind aktiv. Die eigene Domain sowie Weiterleitungen alter Wix-Adressen werden separat eingerichtet.
 
 ## Cache bei Veröffentlichungen
 
@@ -54,9 +54,9 @@ Der Build versieht CSS und JavaScript jeder Seite mit einem Inhalts-Hash im Date
 
 ## Informativer Prototyp
 
-Der ausführliche Entwurf unter `/prototyp/` folgt der blau-weissen Farbwelt der Landingpage. Er erklärt Rolfing®, Faszientherapie und ScarWork – Narbenarbeit, die Zusammenhänge der Ansätze, den Behandlungsablauf und häufige Fragen. Kontakt bleibt per Telefon oder E-Mail; es gibt kein Reservationssystem. Das überarbeitete Konzept und die noch zu bestätigenden Inhalte stehen in `docs/konzept-prototyp.md`.
+Der ausführliche Entwurf unter `/prototyp/` folgt der blau-weissen Farbwelt der Landingpage. Er erklärt Rolfing®, Faszientherapie und ScarWork – Narbenarbeit, die Zusammenhänge der Ansätze, den Behandlungsablauf und häufige Fragen. Echte Termine werden weiterhin per Telefon oder E-Mail vereinbart. Der zusätzliche Buchungsprototyp demonstriert den späteren Ablauf. Das überarbeitete Konzept und die noch zu bestätigenden Inhalte stehen in `docs/konzept-prototyp.md`.
 
-Das Kopfband des Prototyps bleibt beim Scrollen sichtbar. Ein Hamburger-Symbol öffnet auf Desktop und Mobilgeräten ein von rechts einschiebendes Menü mit fünf Einträgen. Auf den Einstieg folgt direkt Sarahs Vorstellung, danach die Methoden ohne Auswahlkacheln oder Abschnittsnummern. `/prototyp/preise/` zeigt eine eigene Preis- und Versicherungsseite mit ausdrücklich markierten offenen Angaben für Sarah.
+Das Kopfband des Prototyps bleibt beim Scrollen sichtbar. Ein Hamburger-Symbol öffnet auf Desktop und Mobilgeräten ein von rechts einschiebendes Menü mit sechs Einträgen. Auf den Einstieg folgt direkt Sarahs Vorstellung, danach die Methoden ohne Auswahlkacheln oder Abschnittsnummern. `/prototyp/preise/` zeigt eine eigene Preis- und Versicherungsseite mit ausdrücklich markierten offenen Angaben für Sarah.
 
 ## SEO und strukturierte Daten
 
@@ -68,6 +68,10 @@ Die SEO-Ergänzungen entstehen im Build: für ihre Prüfung `npm run build` und 
 
 Noch ausserhalb des Codes offen: Hauptdomain verbinden, Google Search Console verifizieren und Sitemap einreichen, Google-Unternehmensprofile je berechtigtem Standort prüfen und Fachverzeichnisse auf einheitliche Praxisdaten abgleichen. Fachliche Autorenschaft, Preise und Anerkennungen erst nach Sarahs Bestätigung vervollständigen; diese Optimierungen garantieren keine Rankings oder KI-Zitate.
 
-## Terminassistent
+## Buchungsprototyp
 
-`/prototyp/termin/` ist ein clientseitiger Assistent für eine **Terminanfrage**, keine Echtzeitbuchung. Ein sichtbarer Button auf den Prototypseiten öffnet die Auswahl von Ort, Datum/Zeit und Behandlung. Er erstellt eine Zusammenfassung und einen `mailto:`-Link. Es wird nichts automatisch gesendet, reserviert oder dauerhaft gespeichert. Ohne E-Mail-Programm steht ein kopierbarer Anfragetext bereit. Freie Termine, verbindliche Dauer und Tarife sind nicht hinterlegt. Der Nutzer ergänzt seinen Namen im E-Mail-Programm; Sarah bestätigt den Termin persönlich. `prototyp/termin.js` wird beim Build wie die übrigen Skripte mit einem Inhalts-Hash ausgeliefert.
+`/prototyp/termin/` demonstriert eine vollständige Buchung auf der Website: Ort, Behandlung, Datum/Uhrzeit, Name/E-Mail/Telefon und Zusammenfassung. Keine echte Buchung, kein Versand und kein Backend. Die Demo verwendet die vom Nutzer bestätigten Beispielzeiten: Montag Bern, Dienstag Niederscherli, jeweils 08:00 bis 17:00, 75 Minuten Sitzung und 15 Minuten Pause. Zwei Zeitfenster pro Tag sind beispielhaft belegt. Abgeschlossene Testbuchungen sperren das gewählte Zeitfenster im selben Browser, auch nach Neuladen. Über den Reset können die eigenen Testbuchungen gelöscht werden; die Beispielbelegungen bleiben bestehen.
+
+Nur Zeitfensterkennungen werden in `localStorage` unter `balance.booking-demo.v1` gespeichert. Name, E-Mail und Telefonnummer bleiben ausschliesslich im Arbeitsspeicher und werden weder gespeichert noch übermittelt. Andere Besucher teilen diese Belegungen nicht. Ohne verfügbaren Browser-Speicher läuft die Demo nur bis zum Neuladen. Der Web Locks API verhindert, soweit unterstützt, parallele Testbuchungen desselben Zeitfensters in Tabs desselben Browsers. Das ersetzt keine serverseitige Transaktion für den späteren Produktivbetrieb.
+
+Es wird kein CAPTCHA vorgetäuscht. Ein echter Spamschutz und eine Datenbank werden erst für das produktive Buchungssystem angeschlossen. Technische Anforderungen dafür stehen in `docs/onlinebuchung.md`. Für die Demo ist kein Blaze-Tarif erforderlich. Die Landingpage bleibt unverändert. `prototyp/termin.js` wird beim Build mit einem Inhalts-Hash ausgeliefert.

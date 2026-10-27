@@ -406,3 +406,24 @@ details.appointment-step:last-of-type { border-bottom: 1px solid var(--line); }
   .appointment-summary > div { grid-template-columns: 1fr; gap: 5px; }
 }
 @media (max-width: 760px) { .appointment-assistant { order: 1; } .appointment-help { order: 2; } }
+
+/* Local booking demonstration. Only occupied slot identifiers are persisted. */
+.time-slot-fieldset { margin-top: 28px !important; }
+.time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.slot-option { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px 8px; border: 1px solid #a8c8d8; cursor: pointer; border-radius: 2px; font-size: 16px; line-height: 1.5; background: #fff; }
+.slot-option input { position: absolute; opacity: 0; width: 100% !important; height: 100% !important; inset: 0; cursor: pointer; }
+.slot-option small { font-size: 10px; color: var(--muted); }
+.slot-option:has(input:checked) { background: var(--ink); border-color: var(--ink); color: #fff; }
+.slot-option:has(input:checked) small { color: #d4eaf4; }
+.slot-option:has(input:disabled) { background: #edf1f3; color: #8a989f; border-color: #dce4e8; cursor: not-allowed; }
+.slot-option:has(input:disabled) input { cursor: not-allowed; }
+.slot-option:has(input:focus-visible) { outline: 2px solid #147791; outline-offset: 3px; }
+.booking-error { color: #8a3c36; font-size: 12px; border-left: 2px solid #b5675f; padding-left: 12px; margin-top: 18px; }
+.step-content input[type=text], .step-content input[type=email], .step-content input[type=tel] { display: block; width: 100%; min-height: 48px; border: 1px solid #a8c8d8; border-radius: 2px; padding: 13px 14px; background: #fff; color: var(--ink); font: 16px Arial, sans-serif; margin-bottom: 22px; }
+.demo-reset { display: inline-block; color: var(--ink); background: none; border: 0; border-bottom: 1px solid #7da8bb; padding: 0 0 3px; font: 11px/1.7 Arial, sans-serif; cursor: pointer; }
+.booking-success { background: #e9f5fa; border-top: 2px solid #6599b0; padding: 28px; }
+.booking-success h2 { font-size: 31px; }
+.booking-success > p { font-size: 13px; color: var(--muted); }
+#book-button:disabled { opacity: .55; cursor: wait; }
+#booking-success { scroll-margin-top: 135px; }
+@media (max-width: 760px) { .booking-success { padding: 22px 17px; } .time-slots { grid-template-columns: repeat(2, 1fr); } }
