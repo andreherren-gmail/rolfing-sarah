@@ -55,3 +55,5 @@ Die vom Nutzer in `praxen.zip` gelieferten Raummotive (`bern.png`, `niederscherl
 ## Beruflicher Hintergrund
 
 Laut Ergänzung des Nutzers bringt Sarah über 20 Jahre Erfahrung im Gesundheitswesen mit, darunter Arbeit als Pflegefachfrau und leitende Funktionen in der Pflege am Inselspital Bern. Der Vorstellungstext verbindet diesen Hintergrund mit ihrer heutigen Körperarbeit, ohne einen vollständigen Wechsel aus der Pflege zu behaupten. Genaue Berufsbezeichnung und Führungsfunktion sind vor der endgültigen Freigabe mit Sarah abzustimmen.
+
+Das Porträt wurde durch die anschliessend vom Nutzer bereitgestellte PNG-Datei ersetzt. Es wird ohne Zuschnitt oder inhaltliche Bearbeitung als grössenoptimierte WebP-Datei `assets/sarah-herren-portraet.webp` mit den Originalabmessungen ausgeliefert.
