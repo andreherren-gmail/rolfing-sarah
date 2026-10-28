@@ -75,3 +75,9 @@ Noch ausserhalb des Codes offen: Hauptdomain verbinden, Google Search Console ve
 Nur Zeitfensterkennungen werden in `localStorage` unter `balance.booking-demo.v1` gespeichert. Name, E-Mail und Telefonnummer bleiben ausschliesslich im Arbeitsspeicher und werden weder gespeichert noch übermittelt. Andere Besucher teilen diese Belegungen nicht. Ohne verfügbaren Browser-Speicher läuft die Demo nur bis zum Neuladen. Der Web Locks API verhindert, soweit unterstützt, parallele Testbuchungen desselben Zeitfensters in Tabs desselben Browsers. Das ersetzt keine serverseitige Transaktion für den späteren Produktivbetrieb.
 
 Es wird kein CAPTCHA vorgetäuscht. Ein echter Spamschutz und eine Datenbank werden erst für das produktive Buchungssystem angeschlossen. Technische Anforderungen dafür stehen in `docs/onlinebuchung.md`. Für die Demo ist kein Blaze-Tarif erforderlich. Die Landingpage bleibt unverändert. `prototyp/termin.js` wird beim Build mit einem Inhalts-Hash ausgeliefert.
+
+## Präsentationsfassung
+
+Die sichtbaren Entwurfsvermerke, internen Hinweise an Sarah und Bildplatzhalter-Beschriftungen wurden für die Präsentation entfernt. Das ändert weder den Platzhalterstatus der Raumbilder noch die fehlende fachliche Freigabe oder die technischen Grenzen der Buchung. Unbestätigte Tarife werden als «auf Anfrage» dargestellt; unbekannte Zugangs- und Anerkennungsangaben werden nicht behauptet. Die Suchmaschinen-Sperren bleiben bestehen.
+
+Die Terminseite ist weiter eine lokale Auswahlhilfe ohne Server. Sie weist sachlich darauf hin, dass die Onlinebuchung nicht freigeschaltet ist, und bestätigt beim Abschluss ausdrücklich keinen Termin. Künstliche Beispielbelegungen wurden entfernt, damit sie ohne Demo-Beschriftung nicht als echte Kundentermine erscheinen. Die im Browser bereits gespeicherten Zeitfenster bleiben lokal nicht auswählbar und lassen sich zurücksetzen.

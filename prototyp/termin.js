@@ -13,7 +13,6 @@ if (assistant) {
   const phone = document.querySelector('#customer-phone');
   const storageKey = 'balance.booking-demo.v1';
   const times = ['08:00', '09:30', '11:00', '12:30', '14:00', '15:30'];
-  const sampleBusy = new Set(['09:30', '14:00']);
   const places = { bern: { name: 'Bern', day: 1, weekday: 'Montag', address: 'Kramgasse 12, 3011 Bern' }, niederscherli: { name: 'Niederscherli', day: 2, weekday: 'Dienstag', address: 'Schwarzenburgstrasse 854, 3145 Niederscherli' } };
   const treatments = { rolfing: 'Rolfing®', fascia: 'Faszientherapie', scar: 'ScarWork: Narbenarbeit', unsure: 'Passende Behandlung zuerst besprechen' };
   const visits = { first: 'Erster Termin', returning: 'Folgetermin' };
@@ -67,7 +66,7 @@ if (assistant) {
   }
   function unavailable(time) {
     const now = clock();
-    return !isPracticeDay() || !times.includes(time) || sampleBusy.has(time) || readBookings().includes(slotKey(time)) || (date.value === now.date && time <= now.time);
+    return !isPracticeDay() || !times.includes(time) || readBookings().includes(slotKey(time)) || (date.value === now.date && time <= now.time);
   }
   function nextDate() {
     const place = places[selected(placeForm, 'place')];
@@ -90,9 +89,9 @@ if (assistant) {
     const place = places[selected(placeForm, 'place')];
     const hint = document.querySelector('#schedule-hint');
     if (!place) { hint.textContent = 'Bitte wähle zuerst einen Standort.'; chosenTime = ''; update(); return; }
-    hint.textContent = `Beispielzeiten in ${place.name}: ${place.weekday}, 8 bis 17 Uhr. Behandlung: 75 Minuten, anschliessend 15 Minuten Pause.`;
+    hint.textContent = `Zeitauswahl in ${place.name}: ${place.weekday}, 8 bis 17 Uhr. Behandlung: 75 Minuten, anschliessend 15 Minuten Pause.`;
     if (!isPracticeDay()) {
-      const note = document.createElement('p'); note.className = 'field-note'; note.textContent = date.value ? `An diesem Datum sind keine Beispieltermine vorgesehen. Wähle einen ${place.weekday} oder nutze den nächsten Behandlungstag.` : 'Bitte wähle ein Datum.'; slots.append(note); chosenTime = ''; update(); return;
+      const note = document.createElement('p'); note.className = 'field-note'; note.textContent = date.value ? `An diesem Datum sind keine Zeiten für die Auswahl vorgesehen. Wähle einen ${place.weekday} oder nutze den nächsten Behandlungstag.` : 'Bitte wähle ein Datum.'; slots.append(note); chosenTime = ''; update(); return;
     }
     if (chosenTime && unavailable(chosenTime)) chosenTime = '';
     for (const time of times) {
@@ -100,7 +99,7 @@ if (assistant) {
       const label = document.createElement('label'); label.className = 'slot-option';
       const input = document.createElement('input'); input.type = 'radio'; input.name = 'slot'; input.value = time; input.disabled = disabled; input.required = true; input.checked = chosenTime === time;
       const text = document.createElement('span'); text.textContent = time;
-      const state = document.createElement('small'); state.textContent = disabled ? 'Belegt' : 'Frei';
+      const state = document.createElement('small'); state.textContent = disabled ? 'Nicht auswählbar' : 'Auswählbar';
       input.addEventListener('change', () => { chosenTime = time; slotError.hidden = true; update(); });
       label.append(input, text, state); slots.append(label);
     }
@@ -147,7 +146,7 @@ if (assistant) {
     for (const item of steps) item.open = item === step;
     step.querySelector('summary').focus({ preventScroll: true });
     step.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-    status.textContent = { place: 'Wähle einen Standort.', type: 'Wähle eine Behandlung.', time: 'Wähle ein Datum und eine freie Uhrzeit.', contact: 'Ergänze deine Testdaten.', review: 'Prüfe deine Angaben vor dem Abschluss.' }[step.dataset.step];
+    status.textContent = { place: 'Wähle einen Standort.', type: 'Wähle eine Behandlung.', time: 'Wähle ein Datum und eine freie Uhrzeit.', contact: 'Ergänze deine Kontaktdaten.', review: 'Prüfe deine Angaben vor dem Abschluss.' }[step.dataset.step];
     update();
   }
   for (const step of steps) {
@@ -183,7 +182,7 @@ if (assistant) {
     try {
       const saved = navigator.locks ? await navigator.locks.request('balance-demo-booking', finish) : finish();
       if (!saved) {
-        chosenTime = ''; renderSlots(); openStep(steps[2]); slotError.textContent = 'Diese Zeit ist inzwischen belegt. Bitte wähle eine andere Uhrzeit.'; slotError.hidden = false; return;
+        chosenTime = ''; renderSlots(); openStep(steps[2]); slotError.textContent = 'Diese Zeit ist nicht mehr auswählbar. Bitte wähle eine andere Uhrzeit.'; slotError.hidden = false; return;
       }
       document.querySelector('#booking-steps').hidden = true;
       const success = document.querySelector('#booking-success'); success.hidden = false; success.focus(); success.scrollIntoView({ block: 'start' });
@@ -194,14 +193,14 @@ if (assistant) {
     document.querySelector('#booking-success').hidden = true; document.querySelector('#success-summary').replaceChildren(); document.querySelector('#booking-steps').hidden = false;
     chosenTime = ''; renderSlots(); openStep(steps[2]);
   });
-  document.querySelector('.demo-reset').addEventListener('click', () => { saveBookings([]); renderSlots(); status.textContent = 'Deine Testbuchungen wurden zurückgesetzt. Die Beispielbelegungen bleiben bestehen.'; });
+  document.querySelector('.demo-reset').addEventListener('click', () => { saveBookings([]); renderSlots(); status.textContent = 'Deine gespeicherte Auswahl wurde zurückgesetzt.'; });
   window.addEventListener('storage', event => {
     if (event.key !== storageKey) return;
     const previous = chosenTime;
     renderSlots();
     if (previous && !chosenTime && !document.querySelector('#booking-steps').hidden) {
       openStep(steps[2]);
-      slotError.textContent = 'Diese Zeit wurde in einem anderen Tab testweise gebucht. Bitte wähle eine andere Uhrzeit.';
+      slotError.textContent = 'Diese Zeit wurde in einem anderen Tab ausgewählt. Bitte wähle eine andere Uhrzeit.';
       slotError.hidden = false;
     }
   });
