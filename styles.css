@@ -4,3 +4,38 @@
 .eyebrow{text-transform:uppercase;line-height:1.9}.eyebrow span{display:inline-block}.tagline{font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.55;max-width:540px;margin:0 0 30px}.description{max-width:470px}@media(max-width:700px){.eyebrow{letter-spacing:1.2px}.tagline{font-size:19px;margin-bottom:25px}.description{max-width:350px}}
 
 @media (max-width: 700px) { h1 { font-size: clamp(36px, 10vw, 51px); letter-spacing: -1.2px; } }
+
+.profile {
+  display: grid;
+  grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  max-width: 540px;
+  margin-bottom: 28px;
+  background: #f5fafb;
+  padding: 20px;
+}
+
+.profile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.profile p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.profile p:last-child { margin-bottom: 0; }
+.profile .qualification { font-size: 12px; }
+.contact-questions { padding-inline-start: 1.25em; margin-bottom: 10px; }
+.contact-title { font-size: 17px; margin: 0 0 12px; }
+.contact { gap: 12px; }
+
+@media (max-width: 500px) {
+  .profile { grid-template-columns: 1fr; gap: 16px; }
+  .profile img { max-width: 180px; }
+  h1 { overflow-wrap: anywhere; }
+}

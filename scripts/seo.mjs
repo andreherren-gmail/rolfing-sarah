@@ -16,7 +16,7 @@ function structuredData() {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'WebSite', '@id': entityId('website'), url: url('/'), name: config.name, inLanguage: 'de-CH', publisher: { '@id': organization } },
-      { '@type': 'WebPage', '@id': entityId('webpage'), url: url('/'), name: 'Rolfing & Faszienarbeit Bern | Sarah Herren', inLanguage: 'de-CH', isPartOf: { '@id': entityId('website') }, about: { '@id': organization } },
+      { '@type': 'WebPage', '@id': entityId('webpage'), url: url('/'), name: 'Rolfing® & Körper-Faszientherapie Bern | Sarah Herren', inLanguage: 'de-CH', isPartOf: { '@id': entityId('website') }, about: { '@id': organization } },
       { '@type': 'Person', '@id': person, name: 'Sarah Herren', jobTitle: 'Certified Advanced Rolfer®', worksFor: { '@id': organization } },
       {
         '@type': 'Organization', '@id': organization, name: config.name, url: url('/'),
@@ -24,7 +24,7 @@ function structuredData() {
         department: [{ '@id': entityId('praxis-bern') }, { '@id': entityId('praxis-niederscherli') }],
         hasOfferCatalog: {
           '@type': 'OfferCatalog', name: 'Tätigkeitsbereiche',
-          itemListElement: ['Rolfing®: Strukturelle Integration', 'Faszienarbeit', 'ScarWork: Narbenarbeit'].map(name => ({
+          itemListElement: ['Rolfing®: Strukturelle Integration', 'Körper-Faszientherapie', 'ScarWork / Narbenarbeit'].map(name => ({
             '@type': 'Offer', itemOffered: { '@type': 'Service', name, provider: { '@id': organization } }
           }))
         }
